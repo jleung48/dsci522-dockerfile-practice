@@ -1,6 +1,7 @@
 FROM quay.io/jupyter/minimal-notebook:afe30f0c9ad8
 
-COPY conda-linux-64.lock /tmp/conda-linux-64.lock
+COPY conda-lock.yml /tmp/conda-lock.yml
 
-RUN mamba update --name base --file /tmp/conda-linux-64.lock && \
+RUN mamba install --yes --channel=conda-forge conda-lock && \
+    conda-lock install --name base /tmp/conda-lock.yml && \
     mamba clean --all -y --force-pkgs-dirs
