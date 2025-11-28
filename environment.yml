@@ -2,5 +2,5 @@ name: dsci522_ia2
 channels:
   - conda-forge
 dependencies:
-  - numpy
-  - scipy
+  - python=3.12.12
+  - numpy=2.3.5
