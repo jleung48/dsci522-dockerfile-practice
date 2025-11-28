@@ -4,12 +4,6 @@ FROM condaforge/miniforge3:latest
 # copy the lockfile into the container
 COPY conda-lock.yml conda-lock.yml
 
-<<<<<<< Updated upstream
-RUN mamba install --yes --channel=conda-forge conda-lock && \
-    conda-lock install --name my_env /tmp/conda-lock.yml && \
-    mamba clean --all -y --force-pkgs-dirs && \
-    /opt/conda/envs/my_env/bin/python -m ipykernel install --user --name=my_env --display-name "Python (My Env)"
-=======
 # setup conda-lock
 RUN conda install -n base -c conda-forge conda-lock -y
 
@@ -33,4 +27,3 @@ WORKDIR /workplace
 # run JupyterLab on container start
 # uses the jupyterlab from the install environment
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--IdentityProvider.token=''", "--ServerApp.password=''"]
->>>>>>> Stashed changes
