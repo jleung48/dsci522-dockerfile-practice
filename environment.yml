@@ -1,0 +1,6 @@
+name: dsci522_ia2
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - scipy
