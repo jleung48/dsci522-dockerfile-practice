@@ -8,14 +8,10 @@ COPY conda-lock.yml conda-lock.yml
 RUN conda install -n base -c conda-forge conda-lock -y
 
 # install packages from lockfile into dockerlock environment
-RUN conda-lock install -n base conda-lock.yml
+RUN conda-lock install -n dockerlock conda-lock.yml && \
+    conda clean --all -y
 
-# make dockerlock the default environment 
-#RUN echo "source /opt/conda/etc/profile.d/conda.sh && conda activate dockerlock" >> ~/.bashrc
-
-# set the default shell to use bash with login to pick up bashrc
-# this ensures that we are starting from an activated dockerlock environment
-#SHELL ["/bin/bash", "-l", "-c"]
+ENV PATH="/opt/conda/envs/dockerlock/bin:$PATH"
 
 # expose JupyterLab port
 EXPOSE 8888
